@@ -1,4 +1,5 @@
-type StatusType = "Not started" | "In progress" | "Done";
+export const statusArray = ["Not started", "In progress", "Done"] as const;
+type StatusType = typeof statusArray[number];
 
 type StatusProps = {
   type: StatusType;
@@ -13,7 +14,7 @@ const Status = (status: StatusProps) => {
             case "Not started":
               return "bg-gray-600";
             case "In progress":
-              return "bg-indigo-600";
+              return "bg-blue-600";
             case "Done":
               return "bg-green-600";
             default:
