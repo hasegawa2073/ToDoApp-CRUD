@@ -16,13 +16,13 @@ const Add = () => {
   return (
     <>
       <Layout title="Add task">
-        <Link href="/" className="text-lg text-gray-800">
+        <Link href="/" className="text-lg font-bold text-gray-800">
           <span className="pr-2">
             <FontAwesomeIcon icon={faArrowLeft} />
           </span>
           Back to Home
         </Link>
-        <div className="mt-8 mb-4 grid grid-cols-12 gap-2 rounded bg-gray-50 py-5 px-10 text-xl font-bold text-gray-700">
+        <div className="mt-5 mb-4 grid grid-cols-12 gap-2 rounded bg-gray-50 py-5 px-10 text-xl font-bold text-gray-700">
           <h2 className="col-start-1 col-end-11 justify-self-start">
             Task name
           </h2>
@@ -31,7 +31,7 @@ const Add = () => {
           </h2>
         </div>
         <form className="text-center">
-          <div className="mt-8 mb-4 grid grid-cols-12 gap-2 rounded bg-gray-50 py-5 px-10 text-gray-700">
+          <div className="grid grid-cols-12 gap-2 rounded bg-gray-50 py-5 px-10 text-gray-700">
             <input
               type="text"
               className="col-start-1 col-end-11 w-full justify-self-start rounded bg-gray-50 py-1 px-2 text-base font-normal"
