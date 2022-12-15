@@ -27,6 +27,7 @@ const Edit = () => {
       status: status,
       uid: currentUser?.uid,
     });
+    router.push("/");
   };
 
   return (
@@ -46,7 +47,7 @@ const Edit = () => {
             Status
           </h2>
         </div>
-        <form className="text-center">
+        <form className="text-center" onSubmit={(e) => e.preventDefault()}>
           <div className="grid grid-cols-12 gap-2 rounded bg-gray-50 py-5 px-10 text-gray-700">
             <input
               type="text"
@@ -77,10 +78,9 @@ const Edit = () => {
                 </option>
               ))}
             </select>
-            <Link
+            <button
               className="col-start-5 col-end-9 mt-8 rounded-md bg-indigo-700 py-3 px-10 text-center text-xl font-bold text-white transition-colors hover:bg-indigo-800"
               onClick={() => editTask()}
-              href="/"
             >
               <div>
                 <span className="pr-2">
@@ -88,7 +88,7 @@ const Edit = () => {
                 </span>
                 edit task
               </div>
-            </Link>
+            </button>
           </div>
         </form>
       </Layout>
