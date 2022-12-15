@@ -1,26 +1,28 @@
-import { uuidv4 } from "@firebase/util";
-import { faArrowLeft, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { doc, setDoc } from "firebase/firestore";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useCallback, useContext, useState } from "react";
 import Layout from "../components/Layout";
 import { statusArray } from "../components/Status";
-import { db } from "../firebase";
 import { AuthContext } from "./auth/AuthProvider";
+import { db } from "../firebase";
 
-const Add = () => {
+const Edit = () => {
   const { currentUser } = useContext(AuthContext);
-  const [status, setStatus] = useState(statusArray[0] as string);
-  const [taskName, setTaskName] = useState("");
+  const router = useRouter();
+  const query = router.query;
+  const [status, setStatus] = useState(query.status);
+  const [taskName, setTaskName] = useState(query.name);
   const taskInput = useCallback((inputElement: HTMLInputElement) => {
     if (inputElement) {
       inputElement.focus();
     }
   }, []);
-  const addTask = async () => {
-    await setDoc(doc(db, "tasks", uuidv4()), {
-      id: uuidv4(),
+  const editTask = async () => {
+    await setDoc(doc(db, "tasks", query.id as string), {
+      id: query.id,
       name: taskName,
       status: status,
       uid: currentUser?.uid,
@@ -29,7 +31,7 @@ const Add = () => {
 
   return (
     <>
-      <Layout title="Add task">
+      <Layout title="Edit task">
         <Link href="/" className="text-lg font-bold text-gray-800">
           <span className="pr-2">
             <FontAwesomeIcon icon={faArrowLeft} />
@@ -51,6 +53,7 @@ const Add = () => {
               className="col-start-1 col-end-11 w-full justify-self-start rounded bg-gray-50 py-1 px-2 text-base font-normal"
               placeholder="タスクを入力してください。"
               ref={taskInput}
+              defaultValue={query.name}
               onChange={(e) => setTaskName(e.target.value)}
             />
             <select
@@ -76,14 +79,14 @@ const Add = () => {
             </select>
             <Link
               className="col-start-5 col-end-9 mt-8 rounded-md bg-indigo-700 py-3 px-10 text-center text-xl font-bold text-white transition-colors hover:bg-indigo-800"
-              onClick={addTask}
+              onClick={() => editTask()}
               href="/"
             >
               <div>
                 <span className="pr-2">
-                  <FontAwesomeIcon icon={faPlus} />
+                  <FontAwesomeIcon icon={faPenToSquare} />
                 </span>
-                add task
+                edit task
               </div>
             </Link>
           </div>
@@ -93,4 +96,4 @@ const Add = () => {
   );
 };
 
-export default Add;
+export default Edit;
