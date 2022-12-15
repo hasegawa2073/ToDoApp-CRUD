@@ -15,7 +15,6 @@ const Layout: FC<Props> = ({ title, children }) => {
           <main className="py-10">{children}</main>
         </div>
       </div>
-      ;
     </>
   );
 };

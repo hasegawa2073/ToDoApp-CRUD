@@ -1,13 +1,36 @@
 import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { collection, DocumentData, getDocs } from "firebase/firestore";
+import { useContext } from "react";
 import CreateTaskButton from "../components/CreateTaskButton";
 import Layout from "../components/Layout";
 import Status from "../components/Status";
+import { db } from "../firebase";
+import { AuthContext } from "./auth/AuthProvider";
 
 export default function Home() {
+  const { currentUser } = useContext(AuthContext);
+  console.log(currentUser?.displayName);
+  console.log(currentUser?.uid);
+
+  // const tasksArray: DocumentData[] = [];
+  // const getTasks = async () => {
+  //   try {
+  //     const querySnapshot = await getDocs(collection(db, "tasks"));
+  //     querySnapshot.forEach((doc) => {
+  //       tasksArray.push(doc.data());
+  //     });
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
+  // getTasks().then(() => {
+  //   console.log(tasksArray);
+  // });
+
   return (
     <>
-      <Layout title="My tasks">
+      <Layout title={`${currentUser?.displayName}'s tasks`}>
         <CreateTaskButton />
         <div className="mt-8 mb-4 grid grid-cols-12 gap-2 rounded bg-gray-50 py-5 px-10 text-xl font-bold text-gray-700">
           <h2 className="col-start-1 col-end-8 justify-self-start">
