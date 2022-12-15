@@ -86,7 +86,7 @@ const Edit = () => {
                 <span className="pr-2">
                   <FontAwesomeIcon icon={faPenToSquare} />
                 </span>
-                edit task
+                update task
               </div>
             </button>
           </div>
