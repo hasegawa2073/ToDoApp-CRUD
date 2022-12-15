@@ -2,7 +2,7 @@ import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
-import { AuthProvider } from "./auth/AuthProvider";
+import AuthProvider from "./auth/AuthProvider";
 import { useEffect } from "react";
 import { auth } from "../firebase";
 import { useRouter } from "next/router";

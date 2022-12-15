@@ -14,7 +14,7 @@ type Props = {
   children: ReactNode;
 };
 
-const AuthContext = createContext<AuthContextProps>({
+export const AuthContext = createContext<AuthContextProps>({
   currentUser: undefined,
   signInCheck: false,
 });
@@ -48,4 +48,4 @@ const AuthProvider: FC<Props> = ({ children }) => {
   }
 };
 
-export { AuthProvider, AuthContext };
+export default AuthProvider;
